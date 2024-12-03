@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Multi-Page Layout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="#main" class="menu">main</a>
+      <a href="#section-a" class="menu">A</a>
+      <a href="#section-b" class="menu">B</a>
+      <a href="#section-c" class="menu">C</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <section id="main" class="page">
+    <div class="content">
+      <p>a system that creates symbiosis with nature</p>
+      <a href="#second-page" class="gif-link">
+        <img src="your-gif.gif" alt="Your GIF" class="gif-container">
+      </a>
+    </div>
+  </section>
+
+  <!-- Second Page (Interactive A, B, C) -->
+  <section id="second-page" class="page">
+    <div class="box-container">
+      <div class="box" data-hover-image="image-a.jpg">
+        <div class="icon"></div>
+        <p>A</p>
+      </div>
+      <div class="box" data-hover-image="image-b.jpg">
+        <div class="icon"></div>
+        <p>B</p>
+      </div>
+      <div class="box" data-hover-image="image-c.jpg">
+        <div class="icon"></div>
+        <p>C</p>
+      </div>
+    </div>
+    <div class="hover-preview">
+      <img src="" alt="Preview" id="hover-image">
+    </div>
+  </section>
+
+  <!-- Section A -->
+  <section id="section-a" class="page">
+    <div class="content">
+      <p class="bottom-left">A</p>
+    </div>
+  </section>
+
+  <!-- Section B -->
+  <section id="section-b" class="page">
+    <div class="content">
+      <p class="center-text">B</p>
+    </div>
+  </section>
+
+  <!-- Section C -->
+  <section id="section-c" class="page">
+    <div class="content">
+      <p class="center-text">C</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Footer content</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
