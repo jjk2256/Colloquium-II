@@ -5,10 +5,26 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: Arial, sans-serif;
-  color: white;
-  background-color: orange;
+  color: teal;
+  background-color: ivory; /* Corrected background color */
+  overflow: auto; /* Allow scrolling */
+}
+
+/* Hide scrollbar for WebKit-based browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for Firefox */
+body {
+  scrollbar-width: none; /* Firefox-specific property */
+}
+
+/* Hide scrollbar for IE and Edge */
+body {
+  -ms-overflow-style: none; /* IE and older Edge */
 }
 
 /* Header */
@@ -16,12 +32,13 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: white;
-  padding: 10px 20px;
+  background-color: transparent;
+  padding: 20px 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow for separation */
 }
 
 header nav a {
@@ -29,61 +46,199 @@ header nav a {
   color: orange;
   font-weight: bold;
   text-decoration: none;
+  font-size: 1.5rem; /* Adjusted font size */
   transition: color 0.3s ease;
 }
 
 header nav a:hover {
-  color: darkorange;
+  color: rgb(214, 245, 161);
 }
 
-/* Pages */
+/* Page Sections */
 .page {
-  height: 100vh;
+  margin-top: 0px; /* Creates space below the fixed header */
+  height: calc(100vh - 100px); /* Adjust height to account for header's height */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 60px; /* Offset for the fixed header */
+  background-color: ivory; /* Adds the ivory background color */
 }
 
-#main .gif-container {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: cover;
+#main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency as needed */
+  z-index: 0; /* Place the overlay below the text */
 }
 
-/* Second Page */
+#main {
+  position: relative; /* Enable positioning for overlay */
+  background-size: cover; /* Ensures the GIF covers the entire page */
+  background-repeat: no-repeat; /* Prevents repeating */
+  background-position: center; /* Centers the GIF */
+  height: 100vh; /* Full page height */
+  display: flex; /* Center content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video Background Styling */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Ensures the video covers the entire background */
+  z-index: 0; /* Places the video below the content */
+  pointer-events: none; /* Prevents interaction with the video */
+}
+
+/* Content Styling */
+#main .content {
+  position: relative; /* Keeps the content above the video */
+  z-index: 1; /* Places content above the background video */
+  color: ivory; /* Ensures text is readable */
+  text-align: center;
+}
+
+
+/* Second Page and Other Sections */
+#second-page, #section-a, #section-b, #section-c {
+  background-color: ivory; /* Add ivory background for all sections */
+}
+
+/* Box Container */
 #second-page .box-container {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: space-around; /* Spaces boxes evenly */
+  align-items: flex-start; /* Aligns boxes to the top */
   width: 100%;
   position: relative;
 }
 
-#second-page .box {
+/* Box Wrapper */
+#second-page .box-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 160px;
+  flex-direction: column; /* Stacks the box and the label vertically */
+  align-items: center; /* Centers the box and label horizontally */
+  margin: 20px; /* Add spacing between box-wrapper elements */
+}
+
+/* Decorative Box */
+#second-page .box {
+  width: 300px;
+  height: 450px;
   background-color: white;
-  margin: 10px;
-  text-decoration: none; /* Remove underline for links */
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
+  border-radius: 5px; /* Optional rounded corners */
+  position: relative; /* Enables hover effects */
+  overflow: hidden; /* Ensures hover images don’t spill out */
+  cursor: pointer; /* Adds pointer cursor for interaction */
+  transition: transform 0.3s ease; /* Adds smooth scaling effect */
 }
 
+/* Hover Effect for Boxes */
 #second-page .box:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom effect for the box */
 }
 
+/* Hover Image/GIF Styling */
+#second-page .box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Matches the box dimensions */
+  height: 100%; /* Matches the box dimensions */
+  background-size: contain; /* Ensures the GIF fits proportionally inside the box */
+  background-repeat: no-repeat; /* Prevents tiling */
+  background-position: center; /* Centers the GIF */
+  opacity: 0; /* Initially hides the GIF */
+  transition: opacity 0.3s ease; /* Adds smooth fade-in effect */
+}
+
+/* Show Hover Image/GIF */
+#second-page .box:hover::before {
+  opacity: 1; /* Makes the image visible on hover */
+}
+
+/* Assign Specific Images/GIFs to Each Box */
+#second-page .box-wrapper:nth-child(1) .box::before {
+  background-image: url('acousticpanel.gif'); /* Replace with your first GIF/image */
+}
+
+#second-page .box-wrapper:nth-child(2) .box::before {
+  background-image: url('Endeffector-ANI.gif'); /* Replace with your second GIF/image */
+}
+
+#second-page .box-wrapper:nth-child(3) .box::before {
+  background-image: url('MyceliumBW.gif'); /* Replace with your third GIF/image */
+}
+
+/* Box Labels */
 #second-page .box-label {
-  font-size: 1.5rem;
+  margin-top: 30px; /* Space between the box and the label */
+  font-size: 2rem; /* Keep the label font size large */
+  font-weight: bold;
+  color: rgb(90, 90, 90); /* Matches the design aesthetic */
+  text-align: center;
+}
+
+/* Clickable Label */
+#second-page .box-label a {
+  font-size: 1.2rem; /* Larger font size for labels */
   font-weight: bold;
   color: orange;
   text-align: center;
+  text-decoration: none; /* Remove underline from links */
+  cursor: pointer; /* Show pointer on hover */
+  transition: color 0.3s ease;
+}
+
+#second-page .box-label a:hover {
+  color: #f0a500; /* Change color on hover for the labels */
+}
+
+/* Content Container for Video and Text */
+.content-container {
+  display: flex; /* Side-by-side layout */
+  flex-wrap: wrap; /* Stacks vertically on smaller screens */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Align vertically */
+  gap: 20px; /* Space between video and text */
+  padding: 20px; /* Add padding around the content */
+}
+
+/* Styling for Video */
+.video {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for Text Content */
+.text-content {
+  max-width: 400px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.text-content p {
+  margin: 0;
 }
 
 /* Footer */
@@ -92,4 +247,35 @@ footer {
   text-align: right;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.symbiosis-text {
+  font-size: 77px; /* Adjust the size as needed */
+  font-style: italic; /* Added italic style */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 20px; /* Reduce padding for smaller screens */
+  }
+  header nav a {
+    font-size: 1.2rem; /* Slightly smaller font size for mobile */
+  }
+  .page {
+    margin-top: 80px; /* Adjust offset for smaller header */
+  }
+  #second-page .box {
+    width: 150px;
+    height: 200px;
+  }
+  #second-page .box-label {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
 }

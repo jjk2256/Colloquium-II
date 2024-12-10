@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
+      document.body.classList.add('no-scroll');
+      document.body.style.overflow = 'hidden';
       target.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.body.classList.remove('no-scroll');
+        document.body.style.overflow = 'hidden';
+      }, 500);
     });
   });
 
