@@ -207,7 +207,7 @@ header nav a:hover {
 /* Content Container for Video and Text */
 .content-container {
   display: flex; /* Side-by-side layout */
-  flex-wrap: wrap; /* Stacks vertically on smaller screens */
+  flex-direction: column; /* Stacks vertically on smaller screens */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Align vertically */
   gap: 20px; /* Space between video and text */
@@ -221,6 +221,25 @@ header nav a:hover {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Poster Container (Vertical Orientation) */
+#poster-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* These explicit dimensions approximate the flipped ratio of your video container */
+  max-height: 600px;
+  height: 100%;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#poster-container img {
+  width: auto;
+  height: 100%;
+  object-fit: contain; /* Ensures the whole poster is visible */
 }
 
 /* Styling for Text Content */
@@ -283,7 +302,7 @@ footer p {
 
 .responsive-image {
   max-width: 80%; /* Limits the width to 80% of the parent container */
-  max-height: 400px; /* Ensures the height does not exceed 400px */
+  max-height: 600px; /* Ensures the height does not exceed 400px */
   display: block; /* Centers the image when combined with margin */
   margin: 0 auto; /* Centers the image horizontally */
   object-fit: contain; /* Ensures the image is contained within the bounds */
