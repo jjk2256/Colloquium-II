@@ -33,3 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Get modal elements
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-image");
+const thumbnail = document.getElementById("poster-thumbnail");
+const closeModal = document.querySelector(".close");
+
+// Open modal when the thumbnail is clicked
+thumbnail.onclick = function () {
+  modal.style.display = "block";
+  modalImg.src = this.src;
+};
+
+// Close modal when the "x" is clicked
+closeModal.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Close modal when clicking outside the image
+modal.onclick = function (e) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
